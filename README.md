@@ -1,8 +1,8 @@
-# 🛡️ frontCyber
+# 🛡️ ThreatVision
 
 > Cyber Threat Intelligence Dashboard desenvolvido com HTML, CSS e TypeScript para monitoramento e análise de vulnerabilidades CVE em tempo real.
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-blue)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
 ![HTML5](https://img.shields.io/badge/HTML5-orange)
 ![CSS3](https://img.shields.io/badge/CSS3-blue)
@@ -12,7 +12,7 @@
 
 ## 📖 Sobre o Projeto
 
-O **frontCyber** é uma aplicação web voltada para **Cyber Threat Intelligence (CTI)** e **Gestão de Vulnerabilidades**, permitindo a consulta, visualização e análise de vulnerabilidades conhecidas (CVEs) através de fontes públicas de inteligência de ameaças.
+O **ThreatVision** é uma aplicação web voltada para **Cyber Threat Intelligence (CTI)** e **Gestão de Vulnerabilidades**, permitindo a consulta, visualização e análise de vulnerabilidades conhecidas (CVEs) através de fontes públicas de inteligência de ameaças.
 
 O objetivo do projeto é simular um dashboard utilizado por equipes de segurança para monitoramento de riscos, análise de vulnerabilidades e apoio à tomada de decisões.
 
@@ -74,7 +74,7 @@ Este projeto foi desenvolvido utilizando apenas tecnologias nativas da web:
 
 ```text
 ┌─────────────────────────────────────────┐
-│ frontCyber                            │
+│ ThreatVision                            │
 ├─────────────────────────────────────────┤
 │ Critical │ High │ Medium │ Total       │
 ├─────────────────────────────────────────┤
@@ -89,7 +89,7 @@ Este projeto foi desenvolvido utilizando apenas tecnologias nativas da web:
 ## 🏗️ Arquitetura
 
 ```text
-frontCyber/
+ThreatVision/
 │
 ├── index.html
 │
@@ -150,13 +150,13 @@ Principais bases:
 ### Clone o repositório
 
 ```bash
-git clone https://github.com/vinicius02xavier/frontCyber.git
+git clone https://github.com/vinicius02xavier/ThreatVision.git
 ```
 
 ### Entre na pasta
 
 ```bash
-cd frontCyber
+cd ThreatVision
 ```
 
 ### Instale as dependências
