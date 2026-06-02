@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreatVision | Cyber Threat Intelligence Dashboard</title>
+
+    <meta name="description"
+        content="Dashboard de Cyber Threat Intelligence para monitoramento e análise de vulnerabilidades CVE.">
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+
+    <script defer src="./dist/main.js"></script>
+</head>
+
+
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <h1>🛡️ ThreatVision</h1>
+            <span>Cyber Threat Intelligence Dashboard</span>
+        </div>
+
+        <div class="header-actions">
+            <button id="theme-toggle">
+                🌙 Dark Mode
+            </button>
+        </div>
+    </header>
+
+
+    <main class="container">
+        <section class="stats">
+            <article class="card critical">
+                <h2>Critical</h2>
+                <span id="critical-count">0</span>
+            </article>
+
+            <article class="card high">
+                <h2>High</h2>
+                <span id="high-count">0</span>
+            </article>
+
+            <article class="card medium">
+                <h2>Medium</h2>
+                <span id="medium-count">0</span>
+            </article>
+
+            <article class="card total">
+                <h2>Total CVEs</h2>
+                <span id="total-count">0</span>
+            </article>
+
+        </section>
+
+
+        <section class="search">
+            <input type="text" id="search-input" placeholder="Pesquisar CVE, fornecedor ou produto">
+
+            <button id="search-btn">
+                Pesquisar
+            </button>
+        </section>
+
+
+        <section class="filters">
+            <button class="filter-btn active">
+                Todos
+            </button>
+
+            <button class="filter-btn">
+                Critical
+            </button>
+
+            <button class="filter-btn">
+                High
+            </button>
+
+            <button class="filter-btn">
+                Medium
+            </button>
+
+            <button class="filter-btn">
+                Low
+            </button>
+        </section>
+
+
+        <section class="charts">
+            <div class="chart-card">
+                <h2>Distribuição por Severidade</h2>
+                <canvas id="severity-chart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h2>Tendência de Vulnerabilidades</h2>
+                <canvas id="trend-chart"></canvas>
+            </div>
+        </section>
+
+
+        <section class="table">
+            <div class="section-header">
+                <h2>Vulnerabilidades Recentes</h2>
+            </div>
+
+            <table id="cve-table">
+                <thead>
+                    <tr>
+                        <th>CVE</th>
+                        <th>CVSS</th>
+                        <th>Severidade</th>
+                        <th>Data</th>
+                        <th>Favorito</th>
+                    </tr>
+                </thead>
+
+                <tbody id="cve-table-body">
+                    <!-- Inserção via TS -->
+                </tbody>
+            </table>
+        </section>
+
+
+        <section class="favorites">
+            <div class="section-header">
+                <h2>⭐ Favoritos</h2>
+            </div>
+
+            <div id="favorites-list">
+                <!-- Inserção via TS -->
+            </div>
+        </section>
+    </main>
+
+
+    <dialog id="cve-modal">
+        <div class="modal-content">
+            <button id="close-modal">
+                ✖
+            </button>
+
+            <h2 id="modal-cve-id">
+                CVE-XXXX-XXXX
+            </h2>
+
+            <p id="modal-description">
+                Descrição da vulnerabilidade.
+            </p>
+
+            <div class="modal-details">
+                <p>
+                    <strong>CVSS:</strong>
+                    <span id="modal-cvss"></span>
+                </p>
+
+                <p>
+                    <strong>Severidade:</strong>
+                    <span id="modal-severity"></span>
+                </p>
+
+                <p>
+                    <strong>Publicado:</strong>
+                    <span id="modal-date"></span>
+                </p>
+            </div>
+        </div>
+    </dialog>
+
+
+    <footer class="footer">
+        <p>
+            ThreatVision © 2026
+        </p>
+
+        <p>
+            Desenvolvido por Vinícius Xavier
+        </p>
+    </footer>
+</body>
+</html>
