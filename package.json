@@ -1,0 +1,23 @@
+{
+  "name": "threatvision",
+  "version": "1.0.0",
+  "description": "> Cyber Threat Intelligence Dashboard desenvolvido com HTML, CSS e TypeScript para monitoramento e análise de vulnerabilidades CVE em tempo real.",
+  "main": "index.js",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicius02xavier/ThreatVision.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinicius02xavier/ThreatVision/issues"
+  },
+  "homepage": "https://github.com/vinicius02xavier/ThreatVision#readme"
+}

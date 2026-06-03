@@ -3,7 +3,7 @@
 > Cyber Threat Intelligence Dashboard desenvolvido com HTML, CSS e TypeScript para monitoramento e análise de vulnerabilidades CVE em tempo real.
 
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-blue)
 ![HTML5](https://img.shields.io/badge/HTML5-orange)
 ![CSS3](https://img.shields.io/badge/CSS3-blue)
 ![Cybersecurity](https://img.shields.io/badge/Cybersecurity-Threat%20Intelligence-red)
