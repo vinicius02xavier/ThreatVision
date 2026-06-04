@@ -5,3 +5,4 @@ export interface CVE {
     severity: string;
     published: string;
 }
+//# sourceMappingURL=types.d.ts.map

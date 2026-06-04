@@ -1,6 +1,4 @@
-import type { CVE } from "./types";
-
-export async function fetchCVEs(): Promise<CVE[]> {
+export async function fetchCVEs() {
     return [
         {
             id: "CVE-2026-1234",
@@ -25,3 +23,4 @@ export async function fetchCVEs(): Promise<CVE[]> {
         }
     ];
 }
+//# sourceMappingURL=api.js.map

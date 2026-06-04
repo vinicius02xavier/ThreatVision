@@ -1,6 +1,4 @@
-import type { CVE } from "./types";
-
-export function calculateStats(cves: CVE[]): Dashboard {
+export function calculateStats(cves) {
     return cves.reduce((acc, cve) => {
         switch (cve.severity.toLowerCase()) {
             case "critical":
@@ -17,8 +15,7 @@ export function calculateStats(cves: CVE[]): Dashboard {
                 break;
         }
         return acc;
-    },
-    {
+    }, {
         total: cves.length,
         critical: 0,
         high: 0,
@@ -26,28 +23,19 @@ export function calculateStats(cves: CVE[]): Dashboard {
         low: 0
     });
 }
-
-export function updateStats(cves: CVE[]): void {
+export function updateStats(cves) {
     const totalColumn = document.getElementById("total-count");
     const criticalColumn = document.getElementById("critical-count");
     const highColumn = document.getElementById("high-count");
     const mediumColumn = document.getElementById("medium-count");
     const lowColumn = document.getElementById("low-count");
-
-    if(!totalColumn || !criticalColumn || !highColumn || !mediumColumn || !lowColumn) return;
+    if (!totalColumn || !criticalColumn || !highColumn || !mediumColumn || !lowColumn)
+        return;
     const stats = calculateStats(cves);
-
     totalColumn.textContent = cves.length.toString();
     criticalColumn.textContent = stats.critical.toString();
     highColumn.textContent = stats.high.toString();
     mediumColumn.textContent = stats.medium.toString();
     lowColumn.textContent = stats.low.toString();
 }
-
-export interface Dashboard {
-    total: number;
-    critical: number;
-    high: number;
-    medium: number;
-    low: number;
-}
+//# sourceMappingURL=dashboard.js.map

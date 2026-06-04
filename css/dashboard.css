@@ -25,11 +25,15 @@
 }
 
 .card.high {
-    border-left: 4px solid #f97316;
+    border-left: 4px solid var(--high);
 }
 
 .card.medium {
-    border-left: 4px solid #f59e0b;
+    border-left: 4px solid var(--medium);
+}
+
+.card.low {
+    border-left: 4px solid var(--low);
 }
 
 .card.total {

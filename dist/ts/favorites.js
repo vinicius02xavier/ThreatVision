@@ -1,14 +1,11 @@
-export function initializeFavorites(): void {
-    const favoriteBtns = document.querySelectorAll<HTMLButtonElement>(".favorite-btn");
-
+export function initializeFavorites() {
+    const favoriteBtns = document.querySelectorAll(".favorite-btn");
     favoriteBtns.forEach(btn => {
         btn.addEventListener("click", () => {
             const cveId = btn.dataset.cveId;
-
-            if (!cveId) return;
-
+            if (!cveId)
+                return;
             let favorites = getFavorites();
-
             if (favorites.includes(cveId)) {
                 favorites = favorites.filter(id => id !== cveId);
                 btn.classList.remove("favorited");
@@ -17,16 +14,14 @@ export function initializeFavorites(): void {
                 favorites.push(cveId);
                 btn.classList.add("favorited");
             }
-
             saveFavorites(favorites);
-        })
-    })
+        });
+    });
 }
-
-function getFavorites(): string[] {
+function getFavorites() {
     return JSON.parse(localStorage.getItem("favorites") || "[]");
 }
-
-function saveFavorites(favorites: string[]): void {
+function saveFavorites(favorites) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
 }
+//# sourceMappingURL=favorites.js.map

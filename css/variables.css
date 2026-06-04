@@ -4,7 +4,10 @@
     --muted: #6b7280;
     --accent: #0f172a;
     --primary: #0ea5a4;
-    --danger: #ef4444;
+    --danger: #ff0000;
+    --high: #ff6a00;
+    --medium: #ffa200;
+    --low: #ffc32d;
     --success: #10b981;
 }
 
@@ -14,6 +17,9 @@
     --muted: #9aa7bf;
     --accent: #e6eef8;
     --primary: #06b6d4;
-    --danger: #ff6b6b;
+    --danger: #ff5353;
+    --high: #ff7a22;
+    --medium: #ff8b39;
+    --low: #fcd34d;
     --success: #34d399;
 }
