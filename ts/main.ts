@@ -1,5 +1,5 @@
 import { fetchCVEs } from "./api.js";
-import { renderSeverityChart } from "./charts.js";
+import { renderCharts } from "./charts.js";
 import { updateStats } from "./dashboard.js";
 import { initializeFavorites } from "./favorites.js";
 import { initializeModal } from "./modal.js";
@@ -24,7 +24,7 @@ async function main(): Promise<void> {
 
     updateStats(cves);
     renderTable(cves);
-    renderSeverityChart(cves);
+    renderCharts(cves);
     initializeModal();
     initializeFavorites();
     hideLoading();
@@ -94,6 +94,51 @@ function getMockData(): CVE[] {
   ];
 }
 
+function getSavedTheme(): "light" | "dark" {
+  const storedTheme = localStorage.getItem("theme");
+
+  if (storedTheme === "dark" || storedTheme === "light") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyTheme(theme: "light" | "dark"): void {
+  const root = document.documentElement;
+  const toggleButton = document.getElementById("theme-toggle");
+
+  if (theme === "dark") {
+    root.classList.add("dark");
+    if (toggleButton) {
+      toggleButton.textContent = "☀️ Light Mode";
+    }
+  } else {
+    root.classList.remove("dark");
+    if (toggleButton) {
+      toggleButton.textContent = "🌙 Dark Mode";
+    }
+  }
+
+  localStorage.setItem("theme", theme);
+}
+
+function initThemeToggle(): void {
+  const toggleButton = document.getElementById("theme-toggle");
+
+  if (!toggleButton) {
+    return;
+  }
+
+  toggleButton.addEventListener("click", () => {
+    const nextTheme = document.documentElement.classList.contains("dark") ? "light" : "dark";
+    applyTheme(nextTheme);
+  });
+
+  applyTheme(getSavedTheme());
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  initThemeToggle();
   main();
 })

@@ -1,27 +1,43 @@
 import type { CVE } from "./types";
 
+const baseUrl = "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=100";
+
 export async function fetchCVEs(): Promise<CVE[]> {
-    return [
-        {
-            id: "CVE-2026-1234",
-            description: "Remote Code Execution",
-            cvss: 9.8,
-            severity: "Critical",
-            published: "2026-06-01"
-        },
-        {
-            id: "CVE-2026-5678",
-            description: "Privilege Escalation",
-            cvss: 8.1,
-            severity: "High",
-            published: "2026-05-29"
-        },
-        {
-            id: "CVE-2026-9012",
-            description: "Information Disclosure",
-            cvss: 6.3,
-            severity: "Medium",
-            published: "2026-05-20"
+    try {
+        const response = await fetch(baseUrl);
+
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
         }
-    ];
+
+        const data = await response.json();
+
+        return data.vulnerabilities.map(
+            (item: any): CVE => {
+                const cve = item.cve;
+
+                const metric =
+                    cve.metrics?.cvssMetricV31?.[0] ??
+                    cve.metrics?.cvssMetricV30?.[0] ??
+                    cve.metrics?.cvssMetricV2?.[0];
+                const cvss = metric?.cvssData;
+                const severity =
+                    metric?.cvssData?.baseSeverity ??
+                    metric?.baseSeverity ??
+                    "Unknown";
+
+                return {
+                    id: cve.id,
+                    description: cve.descriptions?.[0]?.value || "Sem descrição",
+                    cvss: cvss?.baseScore ?? 0,
+                    severity,
+                    published: cve.published
+                };
+            }
+        );
+    } catch (error) {
+        console.error("Erro ao buscar CVEs:", error);
+
+        return [];
+    }
 }

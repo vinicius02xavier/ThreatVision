@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="./css/layout.css">
     <link rel="stylesheet" href="./css/dashboard.css">
 
+    <script type="importmap">
+    {
+        "imports": {
+            "chart.js": "./node_modules/chart.js/dist/chart.js",
+            "@kurkle/color": "./node_modules/@kurkle/color/dist/color.esm.js"
+        }
+    }
+    </script>
+
     <script type="module" defer src="./dist/ts/main.js"></script>
 </head>
 
@@ -102,8 +111,13 @@
             </div>
 
             <div class="chart-card">
-                <h2>Tendência de Vulnerabilidades</h2>
-                <canvas id="trend-chart"></canvas>
+                <h2>Distribuição por CVSS</h2>
+                <canvas id="cvss-chart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h2>CVEs publicados em:</h2>
+                <canvas id="published-chart"></canvas>
             </div>
         </section>
 

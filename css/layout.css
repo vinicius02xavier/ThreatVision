@@ -21,7 +21,7 @@ body {
     justify-content: space-between;
     box-shadow: 0 1px 4px rgba(2, 6, 23, 0.06);
     border-bottom: 1px solid rgba(15, 23, 42, 0.04);
-    background: linear-gradient(90deg, var(--card), #f8fafc);
+    background: var(--card);
 }
 
 .logo-container h1 {
@@ -42,14 +42,15 @@ body {
     cursor: pointer;
     font-size: 16px;
     background: transparent;
+    color: var(--accent);
 }
 
 
 .container {
-    padding: 0 16px;
+    padding: 0 20px;
     flex: 1;
     margin: 24px auto;
-    max-width: 1200px;
+    max-width: 1400px;
 }
 
 .stats {
@@ -73,6 +74,7 @@ body {
     border: 1px solid rgba(15, 23, 42, 0.06);
     font-size: 14px;
     background: var(--card);
+    color: var(--accent);
 }
 
 .search button {
@@ -98,12 +100,13 @@ body {
     border-radius: 999px;
     border: 1px solid rgba(15, 23, 42, 0.06);
     background: transparent;
+    color: var(--accent);
 }
 
 .filter-btn.active {
     border-color: transparent;
     background: var(--accent);
-    color: #fff;
+    color: var(--card);
 }
 
 
