@@ -30,3 +30,20 @@ function getFavorites(): string[] {
 function saveFavorites(favorites: string[]): void {
     localStorage.setItem("favorites", JSON.stringify(favorites));
 }
+
+export function toggleFavorite(cveId: string): void {
+    let favorites = getFavorites();
+
+    if(favorites.includes(cveId)) {
+        favorites = favorites.filter(id => id !== cveId);
+    }
+    else {
+        favorites.push(cveId);
+    }
+
+    saveFavorites(favorites);
+}
+
+export function isFavorite(cveId: string): boolean {
+    return getFavorites().includes(cveId);
+}

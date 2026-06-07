@@ -1,8 +1,10 @@
 import { fetchCVEs } from "./api.js";
 import { renderCharts } from "./charts.js";
 import { updateStats } from "./dashboard.js";
-import { initializeFavorites } from "./favorites.js";
+import { initializeFavorites, toggleFavorite } from "./favorites.js";
+import { filterCVEs } from "./filters.js";
 import { initializeModal } from "./modal.js";
+import { saveSearchQuery, searchCVEs } from "./search.js";
 import { renderTable } from "./table.js";
 async function main() {
     try {
@@ -23,6 +25,44 @@ async function main() {
         initializeFavorites();
         hideLoading();
         console.log(`ThreatVision carregado com ${cves.length} vulnerabilidades.`);
+        // Inicializar filtros
+        document.querySelectorAll(".filter-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                const severity = button.textContent?.trim().toLowerCase() || "";
+                if (severity === "todos") {
+                    renderTable(cves);
+                    updateStats(cves);
+                    renderCharts(cves);
+                    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+                    button.classList.add("active");
+                    return;
+                }
+                const filtered = filterCVEs(cves, severity);
+                renderTable(filtered);
+                updateStats(filtered);
+                renderCharts(filtered);
+                document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
+            });
+        });
+        // Inicializar busca
+        document.getElementById("search-btn")?.addEventListener("click", () => {
+            const searchInput = document.getElementById("search-input");
+            const query = searchInput?.value.trim();
+            if (!query)
+                return;
+            saveSearchQuery(query);
+            const results = searchCVEs(cves, query);
+            renderTable(results);
+            updateStats(results);
+            renderCharts(results);
+        });
+        // Permitir buscar ao pressionar Enter
+        document.getElementById("search-input")?.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                document.getElementById("search-btn")?.click();
+            }
+        });
     }
     catch (error) {
         console.error("Erro ao iniciar a aplicação:", error);
@@ -115,5 +155,16 @@ function initThemeToggle() {
 document.addEventListener("DOMContentLoaded", () => {
     initThemeToggle();
     main();
+});
+document.addEventListener("click", event => {
+    const target = event.target;
+    if (!target.classList.contains("favorite-btn")) {
+        return;
+    }
+    const cveId = target.dataset.cveId;
+    if (!cveId)
+        return;
+    toggleFavorite(cveId);
+    target.classList.toggle("favorited");
 });
 //# sourceMappingURL=main.js.map

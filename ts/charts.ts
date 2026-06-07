@@ -126,20 +126,8 @@ export function renderCVSSChart(cves: CVE[]): void {
             datasets: [{
                 label: "CVEs",
                 data: Object.values(ranges),
-                backgroundColor: [
-                    "#60a5fa",
-                    "#4ade80",
-                    "#facc15",
-                    "#fb7185",
-                    "#ef4444"
-                ],
-                borderColor: [
-                    "#2563eb",
-                    "#16a34a",
-                    "#ca8a04",
-                    "#b91c1c",
-                    "#b91c1c"
-                ],
+                backgroundColor: "#60a5fa",
+                borderColor: "#2563eb",
                 borderWidth: 1
             }]
         },
@@ -163,7 +151,7 @@ export function renderCVSSChart(cves: CVE[]): void {
 export function renderPublishedChart(cves: CVE[]): void {
     const canvas = document.getElementById("published-chart") as HTMLCanvasElement | null;
 
-    if(!canvas) return;
+    if (!canvas) return;
 
     const counts: Record<string, number> = {};
 

@@ -84,20 +84,8 @@ export function renderCVSSChart(cves) {
             datasets: [{
                     label: "CVEs",
                     data: Object.values(ranges),
-                    backgroundColor: [
-                        "#60a5fa",
-                        "#4ade80",
-                        "#facc15",
-                        "#fb7185",
-                        "#ef4444"
-                    ],
-                    borderColor: [
-                        "#2563eb",
-                        "#16a34a",
-                        "#ca8a04",
-                        "#b91c1c",
-                        "#b91c1c"
-                    ],
+                    backgroundColor: "#60a5fa",
+                    borderColor: "#2563eb",
                     borderWidth: 1
                 }]
         },

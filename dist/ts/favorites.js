@@ -24,4 +24,17 @@ function getFavorites() {
 function saveFavorites(favorites) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
 }
+export function toggleFavorite(cveId) {
+    let favorites = getFavorites();
+    if (favorites.includes(cveId)) {
+        favorites = favorites.filter(id => id !== cveId);
+    }
+    else {
+        favorites.push(cveId);
+    }
+    saveFavorites(favorites);
+}
+export function isFavorite(cveId) {
+    return getFavorites().includes(cveId);
+}
 //# sourceMappingURL=favorites.js.map
