@@ -7,7 +7,7 @@
     <title>ThreatVision | Cyber Threat Intelligence Dashboard</title>
 
     <meta name="description"
-        content="Dashboard de Cyber Threat Intelligence para monitoramento e análise de vulnerabilidades CVE.">
+        content="Cyber Threat Intelligence Dashboard for monitoring and analyzing CVE vulnerabilities.">
 
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/reset.css">
@@ -73,17 +73,17 @@
 
 
         <section class="search">
-            <input type="text" id="search-input" placeholder="Pesquisar CVE, fornecedor ou produto">
+            <input type="text" id="search-input" placeholder="Search CVE, severity or date">
 
             <button id="search-btn">
-                Pesquisar
+                Search
             </button>
         </section>
 
 
         <section class="filters">
             <button class="filter-btn active">
-                Todos
+                All
             </button>
 
             <button class="filter-btn">
@@ -106,17 +106,17 @@
 
         <section class="charts">
             <div class="chart-card">
-                <h2>Distribuição por Severidade</h2>
+                <h2>Severity Distribution</h2>
                 <canvas id="severity-chart"></canvas>
             </div>
 
             <div class="chart-card">
-                <h2>Distribuição por CVSS</h2>
+                <h2>CVSS Distribution</h2>
                 <canvas id="cvss-chart"></canvas>
             </div>
 
             <div class="chart-card">
-                <h2>CVEs publicados em:</h2>
+                <h2>CVEs Published In</h2>
                 <canvas id="published-chart"></canvas>
             </div>
         </section>
@@ -124,17 +124,17 @@
 
         <section class="table">
             <div class="section-header">
-                <h2>Vulnerabilidades Recentes</h2>
+                <h2>Recent Vulnerabilities</h2>
             </div>
-
+            <div class="table-scroll">
             <table id="cve-table">
                 <thead>
                     <tr>
                         <th>CVE</th>
                         <th>CVSS</th>
-                        <th>Severidade</th>
-                        <th>Data</th>
-                        <th>Favorito</th>
+                        <th>Severity</th>
+                        <th>Date</th>
+                        <th>Favorite</th>
                     </tr>
                 </thead>
 
@@ -142,12 +142,13 @@
                     <!-- Inserção via TS -->
                 </tbody>
             </table>
+            </div>
         </section>
 
 
         <section class="favorites">
             <div class="section-header">
-                <h2>⭐ Favoritos</h2>
+                <h2>⭐ Favorites</h2>
             </div>
 
             <div id="favorites-list">
@@ -168,7 +169,7 @@
             </h2>
 
             <p id="modal-description">
-                Descrição da vulnerabilidade.
+                Vulnerability Description.
             </p>
 
             <div class="modal-details">
@@ -178,12 +179,12 @@
                 </p>
 
                 <p>
-                    <strong>Severidade:</strong>
+                    <strong>Severity:</strong>
                     <span id="modal-severity"></span>
                 </p>
 
                 <p>
-                    <strong>Publicado:</strong>
+                    <strong>Published In:</strong>
                     <span id="modal-date"></span>
                 </p>
             </div>
@@ -197,7 +198,7 @@
         </p>
 
         <p>
-            Desenvolvido por Vinícius Xavier
+            Developed by Vinícius Gabriel Xavier
         </p>
     </footer>
 </body>

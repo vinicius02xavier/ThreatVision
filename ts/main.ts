@@ -1,12 +1,16 @@
 import { fetchCVEs } from "./api.js";
 import { renderCharts } from "./charts.js";
 import { updateStats } from "./dashboard.js";
-import { initializeFavorites, toggleFavorite } from "./favorites.js";
+import { toggleFavorite, isFavorite, renderFavorites } from "./favorites.js";
 import { filterCVEs } from "./filters.js";
 import { initializeModal } from "./modal.js";
 import { saveSearchQuery, searchCVEs } from "./search.js";
 import { renderTable } from "./table.js";
 import type { CVE } from "./types";
+
+
+let allCves: CVE[] = [];
+
 
 async function main(): Promise<void> {
   try {
@@ -24,16 +28,16 @@ async function main(): Promise<void> {
       cves = getMockData();
     }
 
-    updateStats(cves);
-    renderTable(cves);
-    renderCharts(cves);
+    allCves = cves;
+    updateStats(allCves);
+    renderTable(allCves);
+    renderCharts(allCves);
+    renderFavorites(allCves);
     initializeModal();
-    initializeFavorites();
     hideLoading();
 
     console.log(`ThreatVision carregado com ${cves.length} vulnerabilidades.`);
 
-    // Inicializar filtros
     document.querySelectorAll(".filter-btn").forEach(button => {
       button.addEventListener("click", () => {
         const severity = button.textContent?.trim().toLowerCase() || "";
@@ -52,13 +56,13 @@ async function main(): Promise<void> {
         renderTable(filtered);
         updateStats(filtered);
         renderCharts(filtered);
+        renderFavorites(cves);
 
         document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
         button.classList.add("active");
       });
     });
 
-    // Inicializar busca
     document.getElementById("search-btn")?.addEventListener("click", () => {
       const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
       const query = searchInput?.value.trim();
@@ -72,9 +76,9 @@ async function main(): Promise<void> {
       renderTable(results);
       updateStats(results);
       renderCharts(results);
+      renderFavorites(cves);
     });
 
-    // Permitir buscar ao pressionar Enter
     document.getElementById("search-input")?.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         document.getElementById("search-btn")?.click();
@@ -86,6 +90,7 @@ async function main(): Promise<void> {
     showError("Não foi possível carregar dados de vulnerabilidades.");
   }
 }
+
 
 function showLoading(): void {
   const tbody = document.getElementById("cve-table-body");
@@ -99,9 +104,11 @@ function showLoading(): void {
   `;
 }
 
+
 function hideLoading(): void {
   console.log("Dados carregados.");
 }
+
 
 function showError(message: string): void {
   const tbody = document.getElementById("cve-table-body");
@@ -115,34 +122,33 @@ function showError(message: string): void {
   `;
 }
 
+
 function getMockData(): CVE[] {
   return [
     {
       id: "CVE-2026-1234",
-      description:
-        "Remote code execution vulnerability in web application.",
+      description: "Remote code execution vulnerability in web application.",
       cvss: 9.8,
       severity: "Critical",
       published: "2026-06-01"
     },
     {
       id: "CVE-2026-5678",
-      description:
-        "Privilege escalation vulnerability.",
+      description: "Privilege escalation vulnerability.",
       cvss: 8.4,
       severity: "High",
       published: "2026-05-28"
     },
     {
       id: "CVE-2026-9012",
-      description:
-        "Information disclosure vulnerability.",
+      description: "Information disclosure vulnerability.",
       cvss: 6.5,
       severity: "Medium",
       published: "2026-05-20"
     }
   ];
 }
+
 
 function getSavedTheme(): "light" | "dark" {
   const storedTheme = localStorage.getItem("theme");
@@ -153,6 +159,7 @@ function getSavedTheme(): "light" | "dark" {
 
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
+
 
 function applyTheme(theme: "light" | "dark"): void {
   const root = document.documentElement;
@@ -173,6 +180,7 @@ function applyTheme(theme: "light" | "dark"): void {
   localStorage.setItem("theme", theme);
 }
 
+
 function initThemeToggle(): void {
   const toggleButton = document.getElementById("theme-toggle");
 
@@ -182,6 +190,7 @@ function initThemeToggle(): void {
 
   toggleButton.addEventListener("click", () => {
     const nextTheme = document.documentElement.classList.contains("dark") ? "light" : "dark";
+
     applyTheme(nextTheme);
   });
 
@@ -195,16 +204,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("click", event => {
   const target = event.target as HTMLElement;
+  const favoriteCheckbox = target.closest(".favorite-checkbox") as HTMLInputElement | null;
 
-  if (!target.classList.contains("favorite-btn")) {
+  if (!favoriteCheckbox) {
     return;
   }
 
-  const cveId = target.dataset.cveId;
+  event.stopPropagation();
+
+  const cveId = favoriteCheckbox.dataset.cveId;
 
   if (!cveId) return;
 
   toggleFavorite(cveId);
 
-  target.classList.toggle("favorited");
+  const favorited = isFavorite(cveId);
+
+  favoriteCheckbox.checked = favorited;
+  favoriteCheckbox.setAttribute("aria-pressed", String(favorited));
+
+  renderFavorites(allCves);
 })

@@ -34,13 +34,14 @@ Este projeto foi desenvolvido utilizando apenas tecnologias nativas da web:
 - Vulnerabilidades críticas
 - Vulnerabilidades altas
 - Vulnerabilidades médias
+- Vulnerabilidades baixas
 - Data da última atualização
 
 ### 🔎 Pesquisa Inteligente
 
-- Busca de CVEs por palavra-chave
-- Pesquisa por fornecedor
-- Pesquisa por produto
+- Busca de CVEs por id
+- Pesquisa por severidade
+- Pesquisa por data de publicação
 
 ### 🚨 Gestão de Vulnerabilidades
 
@@ -76,7 +77,7 @@ Este projeto foi desenvolvido utilizando apenas tecnologias nativas da web:
 ┌─────────────────────────────────────────┐
 │ ThreatVision                            │
 ├─────────────────────────────────────────┤
-│ Critical │ High │ Medium │ Total       │
+│ Critical │ High │ Medium │ Low | Total  │
 ├─────────────────────────────────────────┤
 │            Gráficos CTI                 │
 ├─────────────────────────────────────────┤
@@ -91,29 +92,26 @@ Este projeto foi desenvolvido utilizando apenas tecnologias nativas da web:
 ```text
 ThreatVision/
 │
-├── index.html
 │
 ├── css/
-│   ├── reset.css
-│   ├── layout.css
 │   ├── dashboard.css
+│   ├── layout.css
+│   ├── reset.css
 │   └── modal.css
 │
 ├── ts/
-│   ├── main.ts
 │   ├── api.ts
-│   ├── dashboard.ts
-│   ├── table.ts
 │   ├── charts.ts
-│   ├── filters.ts
+│   ├── dashboard.ts
 │   ├── favorites.ts
+│   ├── filters.ts
+│   ├── main.ts
+│   ├── modal.ts
+|   ├── search.ts
+|   ├── table.ts
 │   └── types.ts
 │
-├── assets/
-│   ├── logo.svg
-│   └── icons/
-│
-├── data/
+├── index.html
 │
 └── README.md
 ```
@@ -199,17 +197,16 @@ Este projeto foi criado para praticar:
 ### Versão 1.0
 
 - [x] Estrutura inicial do projeto
-- [ ] Dashboard principal
-- [ ] Consulta de CVEs
-- [ ] Sistema de filtros
-- [ ] Favoritos
+- [x] Dashboard principal
+- [x] Consulta de CVEs
+- [x] Sistema de filtros
+- [x] Favoritos
 
 ### Versão 2.0
 
 - [ ] Exportação de relatórios PDF
 - [ ] Histórico de pesquisas
 - [ ] Dashboard avançado
-- [ ] Comparação entre fornecedores
 
 ### Versão 3.0
 
@@ -234,7 +231,7 @@ Este projeto foi criado para praticar:
 
 ## 👨‍💻 Autor
 
-**Vinícius Xavier**
+**Vinícius Gabriel Xavier**
 
 Tecnólogo em Análise e Desenvolvimento de Sistemas.
 
@@ -250,4 +247,4 @@ Interessado em:
 
 GitHub: https://github.com/vinicius02xavier
 
-LinkedIn: https://www.linkedin.com
+LinkedIn: https://www.linkedin.com/in/vinícius-gabriel-xavier-bb3863233

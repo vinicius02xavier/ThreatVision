@@ -1,37 +1,14 @@
-import {
-    Chart,
-    Tooltip,
-    Legend,
-    PieController,
-    BarController,
-    LineController,
-    ArcElement,
-    BarElement,
-    LineElement,
-    PointElement,
-    CategoryScale,
-    LinearScale,
-} from 'chart.js';
-
+import { Chart, Tooltip, Legend, PieController, BarController, LineController, ArcElement, BarElement, LineElement, PointElement, CategoryScale, LinearScale } from 'chart.js';
 import type { CVE } from "./types";
 
-Chart.register(
-    Tooltip,
-    Legend,
-    PieController,
-    BarController,
-    LineController,
-    ArcElement,
-    BarElement,
-    LineElement,
-    PointElement,
-    CategoryScale,
-    LinearScale,
-);
+
+Chart.register(Tooltip, Legend, PieController, BarController, LineController, ArcElement, BarElement, LineElement, PointElement, CategoryScale, LinearScale);
+
 
 let severityChart: Chart | null = null;
 let cvssChart: Chart | null = null;
 let publishedChart: Chart | null = null;
+
 
 export function renderSeverityChart(cves: CVE[]): void {
     const canvas = document.getElementById("severity-chart") as HTMLCanvasElement | null;
@@ -54,7 +31,6 @@ export function renderSeverityChart(cves: CVE[]): void {
 
     const labels = Object.keys(counts);
     const values = Object.values(counts);
-
     const normalizedColor = (label: string): string => {
         const key = label.toLowerCase() as keyof typeof severityColors;
         const color = severityColors[key];
@@ -85,6 +61,7 @@ export function renderSeverityChart(cves: CVE[]): void {
         }
     });
 }
+
 
 export function renderCVSSChart(cves: CVE[]): void {
     const canvas = document.getElementById("cvss-chart") as HTMLCanvasElement | null;
@@ -148,6 +125,7 @@ export function renderCVSSChart(cves: CVE[]): void {
     });
 }
 
+
 export function renderPublishedChart(cves: CVE[]): void {
     const canvas = document.getElementById("published-chart") as HTMLCanvasElement | null;
 
@@ -194,6 +172,7 @@ export function renderPublishedChart(cves: CVE[]): void {
         }
     });
 }
+
 
 export function renderCharts(cves: CVE[]): void {
     renderSeverityChart(cves);

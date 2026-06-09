@@ -1,11 +1,12 @@
 import { fetchCVEs } from "./api.js";
 import { renderCharts } from "./charts.js";
 import { updateStats } from "./dashboard.js";
-import { initializeFavorites, toggleFavorite } from "./favorites.js";
+import { toggleFavorite, isFavorite, renderFavorites } from "./favorites.js";
 import { filterCVEs } from "./filters.js";
 import { initializeModal } from "./modal.js";
 import { saveSearchQuery, searchCVEs } from "./search.js";
 import { renderTable } from "./table.js";
+let allCves = [];
 async function main() {
     try {
         showLoading();
@@ -18,14 +19,14 @@ async function main() {
             console.warn("Falha ao carregar API, usando dados locais", error);
             cves = getMockData();
         }
-        updateStats(cves);
-        renderTable(cves);
-        renderCharts(cves);
+        allCves = cves;
+        updateStats(allCves);
+        renderTable(allCves);
+        renderCharts(allCves);
+        renderFavorites(allCves);
         initializeModal();
-        initializeFavorites();
         hideLoading();
         console.log(`ThreatVision carregado com ${cves.length} vulnerabilidades.`);
-        // Inicializar filtros
         document.querySelectorAll(".filter-btn").forEach(button => {
             button.addEventListener("click", () => {
                 const severity = button.textContent?.trim().toLowerCase() || "";
@@ -41,11 +42,11 @@ async function main() {
                 renderTable(filtered);
                 updateStats(filtered);
                 renderCharts(filtered);
+                renderFavorites(cves);
                 document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
                 button.classList.add("active");
             });
         });
-        // Inicializar busca
         document.getElementById("search-btn")?.addEventListener("click", () => {
             const searchInput = document.getElementById("search-input");
             const query = searchInput?.value.trim();
@@ -56,8 +57,8 @@ async function main() {
             renderTable(results);
             updateStats(results);
             renderCharts(results);
+            renderFavorites(cves);
         });
-        // Permitir buscar ao pressionar Enter
         document.getElementById("search-input")?.addEventListener("keypress", (e) => {
             if (e.key === "Enter") {
                 document.getElementById("search-btn")?.click();
@@ -158,13 +159,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener("click", event => {
     const target = event.target;
-    if (!target.classList.contains("favorite-btn")) {
+    const favoriteCheckbox = target.closest(".favorite-checkbox");
+    if (!favoriteCheckbox) {
         return;
     }
-    const cveId = target.dataset.cveId;
+    event.stopPropagation();
+    const cveId = favoriteCheckbox.dataset.cveId;
     if (!cveId)
         return;
     toggleFavorite(cveId);
-    target.classList.toggle("favorited");
+    const favorited = isFavorite(cveId);
+    favoriteCheckbox.checked = favorited;
+    favoriteCheckbox.setAttribute("aria-pressed", String(favorited));
+    renderFavorites(allCves);
 });
 //# sourceMappingURL=main.js.map

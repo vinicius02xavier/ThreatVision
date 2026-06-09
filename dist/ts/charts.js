@@ -1,4 +1,4 @@
-import { Chart, Tooltip, Legend, PieController, BarController, LineController, ArcElement, BarElement, LineElement, PointElement, CategoryScale, LinearScale, } from 'chart.js';
+import { Chart, Tooltip, Legend, PieController, BarController, LineController, ArcElement, BarElement, LineElement, PointElement, CategoryScale, LinearScale } from 'chart.js';
 Chart.register(Tooltip, Legend, PieController, BarController, LineController, ArcElement, BarElement, LineElement, PointElement, CategoryScale, LinearScale);
 let severityChart = null;
 let cvssChart = null;

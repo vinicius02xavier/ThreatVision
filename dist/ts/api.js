@@ -1,4 +1,4 @@
-const baseUrl = "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=100";
+const baseUrl = "https://services.nvd.nist.gov/rest/json/cves/2.0";
 export async function fetchCVEs() {
     try {
         const response = await fetch(baseUrl);
@@ -8,9 +8,7 @@ export async function fetchCVEs() {
         const data = await response.json();
         return data.vulnerabilities.map((item) => {
             const cve = item.cve;
-            const metric = cve.metrics?.cvssMetricV31?.[0] ??
-                cve.metrics?.cvssMetricV30?.[0] ??
-                cve.metrics?.cvssMetricV2?.[0];
+            const metric = cve.metrics?.cvssMetricV31?.[0] ?? cve.metrics?.cvssMetricV30?.[0] ?? cve.metrics?.cvssMetricV2?.[0];
             const cvss = metric?.cvssData;
             const severity = metric?.cvssData?.baseSeverity ??
                 metric?.baseSeverity ??

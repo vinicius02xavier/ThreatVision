@@ -1,5 +1,6 @@
 import type { CVE } from "./types";
 
+
 export function calculateStats(cves: CVE[]): Dashboard {
     return cves.reduce((acc, cve) => {
         switch (cve.severity.toLowerCase()) {
@@ -18,14 +19,15 @@ export function calculateStats(cves: CVE[]): Dashboard {
         }
         return acc;
     },
-    {
-        total: cves.length,
-        critical: 0,
-        high: 0,
-        medium: 0,
-        low: 0
-    });
+        {
+            total: cves.length,
+            critical: 0,
+            high: 0,
+            medium: 0,
+            low: 0
+        });
 }
+
 
 export function updateStats(cves: CVE[]): void {
     const totalColumn = document.getElementById("total-count");
@@ -34,7 +36,8 @@ export function updateStats(cves: CVE[]): void {
     const mediumColumn = document.getElementById("medium-count");
     const lowColumn = document.getElementById("low-count");
 
-    if(!totalColumn || !criticalColumn || !highColumn || !mediumColumn || !lowColumn) return;
+    if (!totalColumn || !criticalColumn || !highColumn || !mediumColumn || !lowColumn) return;
+
     const stats = calculateStats(cves);
 
     totalColumn.textContent = cves.length.toString();
@@ -43,6 +46,7 @@ export function updateStats(cves: CVE[]): void {
     mediumColumn.textContent = stats.medium.toString();
     lowColumn.textContent = stats.low.toString();
 }
+
 
 export interface Dashboard {
     total: number;
