@@ -41,7 +41,7 @@ export function renderFavorites(cves: CVE[]): void {
         .filter((cve): cve is CVE => Boolean(cve));
 
     if (favoriteItems.length === 0) {
-        favoritesList.innerHTML = `<p class="text-muted">Nenhum favorito selecionado.</p>`;
+        favoritesList.innerHTML = `<p class="text-muted">No favorites selected.</p>`;
         return;
     }
 
