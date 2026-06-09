@@ -72,8 +72,8 @@ function toggleDetailsRow(row: HTMLTableRowElement, cve: CVE, tbody: HTMLTableSe
         <p>${cve.description}</p>
         <div class="details-meta">
           <span><strong>CVSS:</strong> ${cve.cvss}</span>
-          <span><strong>Severidade:</strong> ${cve.severity}</span>
-          <span><strong>Publicado:</strong> ${new Date(cve.published).toLocaleDateString()}</span>
+          <span><strong>Severity:</strong> ${cve.severity}</span>
+          <span><strong>Published In:</strong> ${new Date(cve.published).toLocaleDateString()}</span>
         </div>
       </div>
     </td>

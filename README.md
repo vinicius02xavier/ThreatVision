@@ -2,7 +2,7 @@
 
 > Cyber Threat Intelligence Dashboard desenvolvido com HTML, CSS e TypeScript para monitoramento e análise de vulnerabilidades CVE em tempo real.
 
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue)
+![Status](https://img.shields.io/badge/Status-Versão%201.0-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-blue)
 ![HTML5](https://img.shields.io/badge/HTML5-orange)
 ![CSS3](https://img.shields.io/badge/CSS3-blue)
@@ -54,7 +54,6 @@ Este projeto foi desenvolvido utilizando apenas tecnologias nativas da web:
 
 - Distribuição por severidade
 - Estatísticas gerais
-- Tendências de vulnerabilidades
 
 ### ⭐ Favoritos
 
@@ -66,24 +65,6 @@ Este projeto foi desenvolvido utilizando apenas tecnologias nativas da web:
 - Dark Mode inspirado em Security Operations Centers (SOC)
 - Layout responsivo
 - Experiência otimizada para desktop e dispositivos móveis
-
----
-
-## 🖼️ Preview
-
-### Dashboard Principal
-
-```text
-┌─────────────────────────────────────────┐
-│ ThreatVision                            │
-├─────────────────────────────────────────┤
-│ Critical │ High │ Medium │ Low | Total  │
-├─────────────────────────────────────────┤
-│            Gráficos CTI                 │
-├─────────────────────────────────────────┤
-│          Tabela de CVEs                 │
-└─────────────────────────────────────────┘
-```
 
 ---
 
@@ -133,8 +114,7 @@ ThreatVision/
 
 O projeto utiliza informações públicas de vulnerabilidades disponibilizadas pelo:
 
-- :contentReference[oaicite:0]{index=0}
-- :contentReference[oaicite:1]{index=1}
+- https://services.nvd.nist.gov/rest/json/cves/2.0
 
 Principais bases:
 
@@ -201,19 +181,6 @@ Este projeto foi criado para praticar:
 - [x] Consulta de CVEs
 - [x] Sistema de filtros
 - [x] Favoritos
-
-### Versão 2.0
-
-- [ ] Exportação de relatórios PDF
-- [ ] Histórico de pesquisas
-- [ ] Dashboard avançado
-
-### Versão 3.0
-
-- [ ] Integração com múltiplas fontes de inteligência
-- [ ] Mapa global de ameaças
-- [ ] Alertas personalizados
-- [ ] Indicadores de risco
 
 ---
 
