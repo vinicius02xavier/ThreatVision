@@ -1,5 +1,4 @@
 import { isFavorite } from "./favorites.js";
-import { showDetails } from "./modal.js";
 export function renderTable(cves) {
     const tbody = document.getElementById("cve-table-body");
     if (!tbody)
@@ -28,7 +27,6 @@ export function renderTable(cves) {
     `;
         row.addEventListener("click", (event) => {
             const target = event.target;
-            // ignore clicks on the favorite checkbox
             if (target.closest(".favorite-checkbox")) {
                 return;
             }
@@ -39,12 +37,10 @@ export function renderTable(cves) {
 }
 function toggleDetailsRow(row, cve, tbody) {
     const next = row.nextElementSibling;
-    // if the next row is already the details for this CVE, remove it (toggle)
     if (next && next.classList.contains("details-row")) {
         next.remove();
         return;
     }
-    // remove any other open details row
     const open = tbody.querySelector(".details-row");
     if (open)
         open.remove();
@@ -57,8 +53,8 @@ function toggleDetailsRow(row, cve, tbody) {
         <p>${cve.description}</p>
         <div class="details-meta">
           <span><strong>CVSS:</strong> ${cve.cvss}</span>
-          <span><strong>Severidade:</strong> ${cve.severity}</span>
-          <span><strong>Publicado:</strong> ${new Date(cve.published).toLocaleDateString()}</span>
+          <span><strong>Severity:</strong> ${cve.severity}</span>
+          <span><strong>Published In:</strong> ${new Date(cve.published).toLocaleDateString()}</span>
         </div>
       </div>
     </td>

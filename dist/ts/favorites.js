@@ -26,17 +26,15 @@ export function renderFavorites(cves) {
         .map(id => cves.find(cve => cve.id === id))
         .filter((cve) => Boolean(cve));
     if (favoriteItems.length === 0) {
-        favoritesList.innerHTML = `<p class="text-muted">Nenhum favorito selecionado.</p>`;
+        favoritesList.innerHTML = `<p class="text-muted">No favorites selected.</p>`;
         return;
     }
-    favoritesList.innerHTML = favoriteItems
-        .map(cve => `
+    favoritesList.innerHTML = favoriteItems.map(cve => `
             <div class="favorite-item" data-cve-id="${cve.id}">
                 <strong>${cve.id}</strong>
                 <p>${cve.severity} • ${new Date(cve.published).toLocaleDateString()}</p>
             </div>
-        `)
-        .join("");
+        `).join("");
     favoritesList.querySelectorAll(".favorite-item").forEach(el => {
         el.addEventListener("click", () => {
             const id = el.getAttribute("data-cve-id");
